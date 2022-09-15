@@ -49,7 +49,7 @@ def sigint_handler(signal, frame):
 
 def watch_sigint():
     signal.signal(signal.SIGINT, sigint_handler)
-    
+
 
 class hashabledict(dict):
     def __hash__(self):
@@ -244,8 +244,8 @@ def process_request_batch(config):
         pbar.close()
     else:
         print('No further requests pending')
-        
-    
+
+
 def seconds_until(time_str, tzname):
     """
     Returns the number of seconds from now until the time in format HH:mm
@@ -372,6 +372,7 @@ class SCU(object):
         identifier = create_dataset(request)
     
         keywords = [ElementPath(path).keyword for path in request['elements']]
+        print(keywords)
 
         if not self.association.is_established:
             self.retry_association()
@@ -380,6 +381,7 @@ class SCU(object):
             responses = self.association.send_c_find(identifier, self.query_model)
                     
             for (status, rsp_identifier) in responses:
+                print(responses)
 
                 if status and status.Status in [0xFF00, 0xFF01]:
                     # Status pending
@@ -409,28 +411,33 @@ class SCU(object):
         
         if self.association.is_established:
             responses = self.association.send_c_move(identifier, self.config['local']['aet'], self.query_model)
-                   
-            for (status, rsp_identifier) in responses:
-                
-                if status and status.Status in [0xFF00]:
-                    # Status pending
-                    pass
-                else:
-                    # Status Success, Warning, Cancel, Failure
-                    if self.pbar:
-                        self.pbar.update(1)
-                    identifier.Status = hex(status.Status)
-                    keywords.append('Status')
-                    path = os.path.join(self.config['output']['directory'], self.config['output']['database_file'])
-                    dataset_to_csv(identifier, path, keywords)
-                    
-                    if status.Status in [0x0000]:
-                        filepath_requests_completed = os.path.join(self.config['output']['directory'], 'requests.completed')
-                        dict_to_csv(request, filepath_requests_completed, request.keys())
+            print(self.config)
+            print(self.query_model)
+            try:
+                for (status, rsp_identifier) in responses:
+                    print(status)
+                    print(rsp_identifier)
+                    if status and status.Status in [0xFF00]:
+                        # Status pending
+                        pass
                     else:
-                        filepath_requests_failed = os.path.join(self.config['output']['directory'], 'requests.failed')
-                        dict_to_csv(request, filepath_requests_failed, request.keys())
-                  
+                        # Status Success, Warning, Cancel, Failure
+                        if self.pbar:
+                            self.pbar.update(1)
+                        identifier.Status = hex(status.Status)
+                        keywords.append('Status')
+                        path = os.path.join(self.config['output']['directory'], self.config['output']['database_file'])
+                        dataset_to_csv(identifier, path, keywords)
 
-                    
+                        if status.Status in [0x0000]:
+                            filepath_requests_completed = os.path.join(self.config['output']['directory'], 'requests.completed')
+                            dict_to_csv(request, filepath_requests_completed, request.keys())
+                        else:
+                            filepath_requests_failed = os.path.join(self.config['output']['directory'], 'requests.failed')
+                            dict_to_csv(request, filepath_requests_failed, request.keys())
+            except:
+                print("Error in status", keywords)
+
+
+
 

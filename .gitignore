@@ -1,4 +1,7 @@
 # Byte-compiled / optimized / DLL files
+config/TO_EXTRACT/
+config/MOHAMMED/
+config/STAGE/
 __pycache__/
 *.py[cod]
 *$py.class
