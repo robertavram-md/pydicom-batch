@@ -1,0 +1,27 @@
+ls
+request:
+  type: c-move
+  model: patient
+  threads: 1
+  throttle_time: 0.0
+  elements_batch_file: /volume/pydicom-batch/config/STAGE/database-c-find_STAGE-PatientID.csv
+  elements:
+    - PatientID=999999
+    - StudyInstanceUID=2.16.124.113611.1.118.1.1.5269602
+    - QueryRetrieveLevel=STUDY
+schedule:
+  enabled: false
+  start_time: '17:13'
+  end_time: '17:15'
+  timezone: America/New_York
+anonymization:
+  enabled: false
+  script: /volume/pydicom-batch/config/sample-dicom-anonymizer.script
+  lookup_table: /volume/pydicom-batch/config/sample-lookup-table.properties
+output:
+  directory: /volume/pydicom-batch/data
+  database_file: /volume/pydicom-batch/data/test.csv
+  directory_structure: PatientID/StudyInstanceUID
+  filename: InstanceNumber
+  decompress: False
+  

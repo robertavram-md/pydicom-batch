@@ -1,0 +1,33 @@
+pacs:
+  hostname: 10.128.228.146
+  port: 5000
+  aet: ALI_QUERY_SCP
+local:
+  port: 4000
+  aet: MHI_RTX_01
+request:
+  type: c-move
+  model: patient
+  threads: 8
+  throttle_time: 0
+  #elements_batch_file: /volume/pydicom-batch/config/TO_EXTRACT/2021.csv
+  elements_batch_file: /volume/pydicom-batch/data/database-c-find_2022-megatron.csv
+  elements:
+    - PatientID=*
+    - StudyInstanceUID=*
+    - QueryRetrieveLevel=STUDY
+schedule:
+  enabled: False
+  start_time: '18:30'
+  end_time: '6:45'
+  timezone: America/New_York
+anonymization:
+  enabled: True
+  script: /volume/pydicom-batch/config/sample-dicom-anonymizer.script
+  lookup_table: /volume/pydicom-batch/config/sample-lookup-table.properties
+output:
+  directory: /media/data1/ravram/Megatron/
+  database_file: /volume/pydicom-batch/data/database-c-move-2022-megatron.csv
+  directory_structure: PatientID/StudyInstanceUID
+  filename: SeriesInstanceUID
+  decompress: False

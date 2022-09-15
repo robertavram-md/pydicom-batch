@@ -1,0 +1,38 @@
+pacs:
+  hostname: 10.128.228.146
+  port: 5000
+  aet: ALI_QUERY_SCP
+local:
+  port: 4000
+  aet: MHI_RTX_01
+request:
+  type: c-find
+  model: patient
+  threads: 1
+  throttle_time: 1.0
+  #elements_batch_file: /volume/pydicom-batch/config/database-c-find_PRODUCTION.csv
+  elements:
+    #- PatientID=*
+    - PatientID=419503
+    #- PatientNames
+    #- Date
+    - StudyTime
+    #- StudyDate=20211001-20211231
+    - StudyDate=*
+    - AccessionNumber
+    - StudyInstanceUID=*
+    #- SeriesInstanceUID
+    - QueryRetrieveLevel=STUDY
+    - ModalitiesInStudy=XA
+   # - (0020,1208)
+   # - (0020,1206)
+   # - (0008,1030)
+   # - (0008,103E)
+output:
+  anonymization_script: /volume/pydicom-batch/config/sample-dicom-anonymizer.script
+  anonymization_lookup_table: /volume/pydicom-batch/config/sample-lookup-table.properties
+  directory: /volume/pydicom-batch/
+  database_file: /volume/pydicom-batch/data/database-c-find_2022-megatron.csv
+  directory_structure: PatientID/StudyInstanceUID/
+
+  

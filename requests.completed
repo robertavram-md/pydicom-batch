@@ -1,0 +1,2 @@
+elements,model,threads,throttle_time,type
+"['PatientID=419503', 'StudyTime', 'StudyDate=*', 'AccessionNumber', 'StudyInstanceUID=*', 'QueryRetrieveLevel=STUDY', 'ModalitiesInStudy=XA']",patient,1,1.0,c-find
