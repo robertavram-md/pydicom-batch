@@ -10,7 +10,8 @@ request:
   model: patient
   threads: 8
   throttle_time: 0
-  elements_batch_file: /volume/pydicom-batch/data/database-c-find_TCT2022.csv
+  #elements_batch_file: /volume/pydicom-batch/config/TO_EXTRACT/2021.csv
+  elements_batch_file: /volume/pydicom-batch/data/audit-inference-20220401-20220831_converted.csv
   elements:
     - PatientID=*
     - StudyInstanceUID=*
@@ -26,8 +27,8 @@ anonymization:
   script: /volume/pydicom-batch/config/sample-dicom-anonymizer.script
   lookup_table: /volume/pydicom-batch/config/sample-lookup-table.properties
 output:
-  directory: /media/data1/ravram/TCT2022/
-  database_file: /volume/pydicom-batch/data/audit-inferencwe-CMOVE-20220401-20220831_converted.csv
+  directory: /media/data1/ravram/CathEF_Prospective/
+  database_file: /volume/pydicom-batch/data/audit-inference-CMOVE-20220401-20220831_converted.csv
   directory_structure: PatientID/StudyInstanceUID
   filename: SeriesInstanceUID
   decompress: False
