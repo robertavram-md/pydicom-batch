@@ -1,2 +1,2 @@
-elements,model,threads,throttle_time,type
-"['PatientID=199385', 'StudyTime', 'StudyDate=20220819-20220819', 'StudyDate=*', 'AccessionNumber', 'StudyInstanceUID=*', 'QueryRetrieveLevel=STUDY', 'ModalitiesInStudy=XA']",patient,1,1.0,c-find
+elements,elements_batch_file,model,threads,throttle_time,type
+"['PatientID=*', 'StudyInstanceUID=*', 'QueryRetrieveLevel=STUDY', 'ModalitiesInStudy=XA']",/volume/pydicom-batch/config/audit-inference-20210803-20230803.csv,patient,1,1.0,c-find

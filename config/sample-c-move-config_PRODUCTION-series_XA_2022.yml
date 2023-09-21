@@ -25,8 +25,8 @@ anonymization:
   script: /volume/pydicom-batch/config/sample-dicom-anonymizer.script
   lookup_table: /volume/pydicom-batch/config/sample-lookup-table.properties
 output:
-  directory: /media/data1/ravram/CathEF_Prospective/
-  database_file: /volume/pydicom-batch/data/audit-inference-20210803-20230803_extract.csv
+  directory: /media/data1/ravram/DeepCORO/2022/
+  database_file: /volume/pydicom-batch/data/extract/database-c-find_ANGIOGRAM2022_20220101-20221231.XA.csv
   directory_structure: PatientID/StudyInstanceUID
   filename: SeriesInstanceUID
   decompress: False
