@@ -1,5 +1,5 @@
 from pynetdicom import AE, evt
-from pynetdicom.sop_class import VerificationSOPClass
+from pynetdicom.sop_class import VerificationServiceClass
 from pynetdicom.apps.common import ElementPath
 from pydicom.dataset import Dataset
 import os.path
@@ -30,6 +30,8 @@ from pynetdicom import (
 
 from pynetdicom._globals import DEFAULT_MAX_LENGTH
 from pynetdicom.pdu_primitives import SOPClassExtendedNegotiation
+
+
 from pynetdicom.sop_class import (
     PatientRootQueryRetrieveInformationModelFind,
     StudyRootQueryRetrieveInformationModelFind,

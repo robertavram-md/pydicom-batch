@@ -10,13 +10,13 @@ request:
   model: patient
   threads: 8
   throttle_time: 0
-  elements_batch_file: /volume/pydicom-batch/data/audit-inference-20210803-20230803.csv
+  elements_batch_file: /volume/C-find/c-find_XA_2023.csv
   elements:
     - PatientID=*
     - StudyInstanceUID=*
     - QueryRetrieveLevel=STUDY ##Series if you want individual dicoms
 schedule:
-  enabled: False
+  enabled: True
   start_time: '18:30'
   end_time: '6:45'
   timezone: America/New_York
@@ -25,8 +25,8 @@ anonymization:
   script: /volume/pydicom-batch/config/sample-dicom-anonymizer.script
   lookup_table: /volume/pydicom-batch/config/sample-lookup-table.properties
 output:
-  directory: /media/data1/ravram/DeepCORO/2022/
-  database_file: /volume/pydicom-batch/data/extract/database-c-find_ANGIOGRAM2022_20220101-20221231.XA.csv
+  directory: /media/data1/ravram/DeepCORO/2023/
+  database_file: /volume/pydicom-batch/data/extract/database-c-find_ANGIOGRAM2022_20230101-20231231.XA.csv
   directory_structure: PatientID/StudyInstanceUID
   filename: SeriesInstanceUID
   decompress: False
